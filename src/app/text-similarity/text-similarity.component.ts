@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExtractedEntity } from '../model';
+import { ExtractedEntity, SimilarityData } from '../model';
 import { DandelionService } from '../service/dandelion.service';
 
 @Component({
@@ -7,7 +7,41 @@ import { DandelionService } from '../service/dandelion.service';
   templateUrl: './text-similarity.component.html',
   styleUrls: ['./text-similarity.component.css']
 })
-export class TextSimilarityComponent {
+export class TextSimilarityComponent implements OnInit {
+
+  query1: string;
+  query2: string;
+
+  similarityData: SimilarityData = { timestamp: '', time: 0, lang: '', langConfidence: 0, text1: '', text2: '', similarity: 0.0 };
+
+  constructor(private dandelionService: DandelionService) {
+    this.query1 = '';
+    this.query2 = '';
+  }
+
+  ngOnInit(): void {
+  }
+
+  getSimilarity(): void {
+    if (this.query1 === '' || this.query2 === '') {
+      return;
+    }
+
+    this.dandelionService.getTextSimilarity(this.query1, this.query2).subscribe((similarityData) => {
+      this.similarityData = similarityData;
+      this.similarityData.similarity = Number((similarityData.similarity * 100).toFixed(2));
+
+      console.log(this.similarityData.similarity * 100);
+    });
+  }
+
+  changeQuery1(event: Event): void {
+    this.query1 = (<HTMLInputElement>event.target).value;
+  }
+
+  changeQuery2(event: Event): void {
+    this.query2 = (<HTMLInputElement>event.target).value;
+  }
 
   // textQuery: string;
   // extractedEntity: ExtractedEntity = { timestamp: '', time: 0, lang: '', annotations: [] };

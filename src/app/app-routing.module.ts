@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TextSimilarityComponent } from './text-similarity/text-similarity.component';
 import { EntityExtractionComponent } from './entity-extraction/entity-extraction.component';
+import { LanguageDetectionComponent } from './language-detection/language-detection.component';
 
 const routes: Routes = [
   {
@@ -10,8 +11,12 @@ const routes: Routes = [
     component: EntityExtractionComponent
   },
   {
-    path: "textSimilarity",
+    path: 'textSimilarity',
     component: TextSimilarityComponent
+  },
+  {
+    path: 'languageDetection',
+    component: LanguageDetectionComponent
   }
 ];
 

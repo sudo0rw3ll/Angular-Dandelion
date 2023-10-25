@@ -1,0 +1,24 @@
+<div class="container mt-5" style="margin-top: 20px;">
+    <h3>Please enter texts you want to compare in these text areas</h3>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <textarea class="form-control" name="textarea1" id="textarea1" rows="4"
+                    style="height:300px; width: 500px;" placeholder="Please enter text1"
+                    (keyup)="changeQuery1($event)"></textarea>
+            </div>
+            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary" (click)="getSimilarity()">Analize similarity</button>
+            </div>
+            <div class="col-md-5">
+                <textarea class="form-control" name="textarea2" id="textarea2" rows="4"
+                    style="height:300px; width: 500px;" placeholder="Please enter text2"
+                    (keyup)="changeQuery2($event)"></textarea>
+            </div>
+
+            <div class="col-md-5 d-flex align-items-center justify-content-center">
+                <h3 *ngIf="similarityData.timestamp">Similarity percentage: {{similarityData.similarity}}%</h3>
+            </div>
+        </div>
+    </div>
+</div>

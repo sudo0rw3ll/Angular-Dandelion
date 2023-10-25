@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { ExtractedEntity } from '../model';
+import { ExtractedEntity, SimilarityData } from '../model';
 
 
 @Injectable({
@@ -16,6 +16,10 @@ export class DandelionService {
   constructor(private httpClient: HttpClient) { }
 
   getExtractedEntities(query: string): Observable<ExtractedEntity> {
-    return this.httpClient.get<ExtractedEntity>(`${this.apiUrl}/?text=${query}`)
+    return this.httpClient.get<ExtractedEntity>(`${this.apiUrl}/nex/v1/?text=${query}`);
+  }
+
+  getTextSimilarity(text1: string, text2: string): Observable<SimilarityData> {
+    return this.httpClient.get<SimilarityData>(`${this.apiUrl}/sim/v1/?text1=${text1}&text2=${text2}&token=b0768efbc8914759bf0152cffc6ac473`);
   }
 }

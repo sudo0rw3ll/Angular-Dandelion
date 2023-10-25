@@ -8,12 +8,14 @@ import { TextSimilarityComponent } from './text-similarity/text-similarity.compo
 import { HttpClientModule } from '@angular/common/http';
 import { EntityExtractionComponent } from './entity-extraction/entity-extraction.component';
 import { FormsModule } from '@angular/forms';
+import { LanguageDetectionComponent } from './language-detection/language-detection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TextSimilarityComponent,
-    EntityExtractionComponent
+    EntityExtractionComponent,
+    LanguageDetectionComponent
   ],
   imports: [
     BrowserModule,
