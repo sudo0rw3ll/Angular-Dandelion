@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <form>
+        <div class="form-group">
+            <label for="textField">Please enter the text to perform sentiment analysis</label>
+            <textarea class="form-control custom-textarea" id="textField" name="textField" placeholder="Enter text here"
+                style="height: 300px;" (keyup)="changeSentimentQuery($event)" required></textarea>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioOptions" id="italianLang" value="it"
+                (click)="changeLanguage($event)">
+            <label class="form-check-label" for="italianLang">
+                Italian
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioOptions" id="englishLang" value="en"
+                (click)="changeLanguage($event)">
+            <label class="form-check-label" for="englishLang">
+                English
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioOptions" id="autoLang" value="auto"
+                (click)="changeLanguage($event)">
+            <label class="form-check-label" for="autoLang">
+                Auto
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="getAnalysis()">Analize!</button>
+    </form>
+
+    <div *ngIf="sentimentAnalysis.timestamp">
+        <h3>Sentiment: {{sentimentAnalysis.sentiment.type}}</h3>
+    </div>
+</div>

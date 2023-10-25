@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { ExtractedEntity, LanguageDetectionData, SimilarityData } from '../model';
+import { ExtractedEntity, LanguageDetectionData, SentimentAnalysisData, SimilarityData } from '../model';
 
 
 @Injectable({
@@ -25,5 +25,9 @@ export class DandelionService {
 
   getDetectedLanguages(text: string): Observable<LanguageDetectionData> {
     return this.httpClient.get<LanguageDetectionData>(`${this.apiUrl}/li/v1/?text=${text}&token=b0768efbc8914759bf0152cffc6ac473`);
+  }
+
+  getSentimentAnalysis(query: string): Observable<SentimentAnalysisData> {
+    return this.httpClient.get<SentimentAnalysisData>(`${this.apiUrl}/sent/v1/${query}`);
   }
 }

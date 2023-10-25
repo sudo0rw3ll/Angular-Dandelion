@@ -9,13 +9,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { EntityExtractionComponent } from './entity-extraction/entity-extraction.component';
 import { FormsModule } from '@angular/forms';
 import { LanguageDetectionComponent } from './language-detection/language-detection.component';
+import { SentimentAnalysisComponent } from './sentiment-analysis/sentiment-analysis.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TextSimilarityComponent,
     EntityExtractionComponent,
-    LanguageDetectionComponent
+    LanguageDetectionComponent,
+    SentimentAnalysisComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,

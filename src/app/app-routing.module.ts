@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TextSimilarityComponent } from './text-similarity/text-similarity.component';
 import { EntityExtractionComponent } from './entity-extraction/entity-extraction.component';
 import { LanguageDetectionComponent } from './language-detection/language-detection.component';
+import { SentimentAnalysisComponent } from './sentiment-analysis/sentiment-analysis.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,14 @@ const routes: Routes = [
   {
     path: 'languageDetection',
     component: LanguageDetectionComponent
+  },
+  {
+    path: 'sentimentAnalysis',
+    component: SentimentAnalysisComponent
+  },
+  {
+    path: 'configuration',
+    component: SentimentAnalysisComponent
   }
 ];
 

@@ -80,7 +80,7 @@ export class EntityExtractionComponent implements OnInit {
       if (index > -1)
         this.includesPart.splice(index, 1);
     }
-
+    
     if (this.includesPart.length != 0) {
       query += "&include="
       for (let part of this.includesPart) {
