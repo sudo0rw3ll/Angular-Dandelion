@@ -1,1 +1,29 @@
-<p>language-detection works!</p>
+<div class="container mt-5" style="margin-top: 20px;">
+    <form>
+        <div class="form-group">
+            <label for="textField">Please enter the text in order to determine the language</label>
+            <textarea class="form-control custom-textarea" id="textField" name="textField" placeholder="Enter text here"
+                style="height: 300px;" (keyup)="setQuery($event)" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="d-flex">
+                <div class="form-check mr-3">
+                    <label class="form-check-label" for="cleanOption" style="margin-right:20px;">Clean input?</label>
+                    <input [(ngModel)]="cleanData" class="form-check-input" type="checkbox" id="cleanOption"
+                        name="cleanOption" value="cleanOption">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="getDetectedLangs()">Detect!</button>
+    </form>
+
+    <div *ngIf="detectedLanguage.timestamp">
+        <div *ngFor="let detectedLanguage of detectedLanguage.detectedLangs">
+            <ul>
+                <li>{{detectedLanguage.lang}} : {{detectedLanguage.confidence}}%</li>
+            </ul>
+        </div>
+    </div>
+</div>

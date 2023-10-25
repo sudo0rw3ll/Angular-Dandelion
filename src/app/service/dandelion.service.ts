@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { ExtractedEntity, SimilarityData } from '../model';
+import { ExtractedEntity, LanguageDetectionData, SimilarityData } from '../model';
 
 
 @Injectable({
@@ -21,5 +21,9 @@ export class DandelionService {
 
   getTextSimilarity(text1: string, text2: string): Observable<SimilarityData> {
     return this.httpClient.get<SimilarityData>(`${this.apiUrl}/sim/v1/?text1=${text1}&text2=${text2}&token=b0768efbc8914759bf0152cffc6ac473`);
+  }
+
+  getDetectedLanguages(text: string): Observable<LanguageDetectionData> {
+    return this.httpClient.get<LanguageDetectionData>(`${this.apiUrl}/li/v1/?text=${text}&token=b0768efbc8914759bf0152cffc6ac473`);
   }
 }

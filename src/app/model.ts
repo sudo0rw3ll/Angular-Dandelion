@@ -40,3 +40,15 @@ export interface SimilarityData {
     text2: string,
     similarity: number
 }
+
+export interface LanguageDetectionData {
+    timestamp: string,
+    time: number,
+    text: string,
+    detectedLangs: Array<LanguageData>
+}
+
+export interface LanguageData {
+    lang: string,
+    confidence: number
+}
