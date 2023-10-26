@@ -34,6 +34,9 @@
     </form>
 
     <div *ngIf="sentimentAnalysis.timestamp">
-        <h3>Sentiment: {{sentimentAnalysis.sentiment.type}}</h3>
+        <div *ngIf="sentimentColor">
+            <h3 [style.color]="sentimentColor">Sentiment:
+                {{sentimentAnalysis.sentiment.type}}</h3>
+        </div>
     </div>
 </div>

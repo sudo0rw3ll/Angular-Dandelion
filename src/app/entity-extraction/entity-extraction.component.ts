@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DandelionService } from '../service/dandelion.service';
 import { ExtractedEntity } from '../model';
+import { ConfigService } from '../service/config.service';
 
 @Component({
   selector: 'app-entity-extraction',
@@ -17,7 +18,7 @@ export class EntityExtractionComponent implements OnInit {
   includesPart: Array<string>;
   sliderValue: number;
 
-  constructor(private dandelionService: DandelionService) {
+  constructor(private dandelionService: DandelionService, private configService: ConfigService) {
     this.textQuery = '';
     this.isImage = false;
     this.isAbstract = false;
@@ -27,6 +28,7 @@ export class EntityExtractionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.configService.getToken());
   }
 
   changeQuery(event: Event): void {
@@ -80,7 +82,7 @@ export class EntityExtractionComponent implements OnInit {
       if (index > -1)
         this.includesPart.splice(index, 1);
     }
-    
+
     if (this.includesPart.length != 0) {
       query += "&include="
       for (let part of this.includesPart) {
@@ -94,7 +96,7 @@ export class EntityExtractionComponent implements OnInit {
     if (this.sliderValue > 0)
       query += `&min_confidence=${this.sliderValue}`;
 
-    query += `&token=b0768efbc8914759bf0152cffc6ac473`;
+    query += `&token=${this.configService.getToken()}`;
 
     return query;
   }

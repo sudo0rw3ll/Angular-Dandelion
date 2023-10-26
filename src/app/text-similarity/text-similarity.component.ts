@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ExtractedEntity, SimilarityData } from '../model';
 import { DandelionService } from '../service/dandelion.service';
+import { ConfigService } from '../service/config.service';
+import { LoggerService } from '../service/logger.service';
 
 @Component({
   selector: 'app-text-similarity',
@@ -14,7 +16,9 @@ export class TextSimilarityComponent implements OnInit {
 
   similarityData: SimilarityData = { timestamp: '', time: 0, lang: '', langConfidence: 0, text1: '', text2: '', similarity: 0.0 };
 
-  constructor(private dandelionService: DandelionService) {
+  constructor(private dandelionService: DandelionService,
+    private configService: ConfigService,
+    private loggerService: LoggerService) {
     this.query1 = '';
     this.query2 = '';
   }
@@ -27,12 +31,14 @@ export class TextSimilarityComponent implements OnInit {
       return;
     }
 
-    this.dandelionService.getTextSimilarity(this.query1, this.query2).subscribe((similarityData) => {
+    this.dandelionService.getTextSimilarity(this.query1, this.query2, this.configService.getToken()).subscribe((similarityData) => {
       this.similarityData = similarityData;
       this.similarityData.similarity = Number((similarityData.similarity * 100).toFixed(2));
 
       console.log(this.similarityData.similarity * 100);
     });
+
+    this.loggerService.log({ timestamp: '', date: '', endpoint: '', method: 'GET' });
   }
 
   changeQuery1(event: Event): void {
@@ -42,18 +48,4 @@ export class TextSimilarityComponent implements OnInit {
   changeQuery2(event: Event): void {
     this.query2 = (<HTMLInputElement>event.target).value;
   }
-
-  // textQuery: string;
-  // extractedEntity: ExtractedEntity = { timestamp: '', time: 0, lang: '', annotations: [] };
-
-  // constructor(private dandelionService: DandelionService) {
-  //   this.textQuery = '';
-  // }
-
-  // ngOnInit(): void {
-  //   this.dandelionService.getExtractedEntities("?text=The%20doctor%20says%20an%20apple%20is%20better%20than%20an%20orange&include=image,types%2Cabstract%2Ccategories%2Clod&token=b0768efbc8914759bf0152cffc6ac473").subscribe((extractedEntity) => {
-  //     this.extractedEntity = extractedEntity;
-  //     console.log(this.extractedEntity);
-  //   })
-  // }
 }

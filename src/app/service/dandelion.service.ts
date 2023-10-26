@@ -19,12 +19,12 @@ export class DandelionService {
     return this.httpClient.get<ExtractedEntity>(`${this.apiUrl}/nex/v1/?text=${query}`);
   }
 
-  getTextSimilarity(text1: string, text2: string): Observable<SimilarityData> {
-    return this.httpClient.get<SimilarityData>(`${this.apiUrl}/sim/v1/?text1=${text1}&text2=${text2}&token=b0768efbc8914759bf0152cffc6ac473`);
+  getTextSimilarity(text1: string, text2: string, token: string): Observable<SimilarityData> {
+    return this.httpClient.get<SimilarityData>(`${this.apiUrl}/sim/v1/?text1=${text1}&text2=${text2}&token=${token}`);
   }
 
-  getDetectedLanguages(text: string): Observable<LanguageDetectionData> {
-    return this.httpClient.get<LanguageDetectionData>(`${this.apiUrl}/li/v1/?text=${text}&token=b0768efbc8914759bf0152cffc6ac473`);
+  getDetectedLanguages(text: string, token: string): Observable<LanguageDetectionData> {
+    return this.httpClient.get<LanguageDetectionData>(`${this.apiUrl}/li/v1/?text=${text}&token=${token}`);
   }
 
   getSentimentAnalysis(query: string): Observable<SentimentAnalysisData> {

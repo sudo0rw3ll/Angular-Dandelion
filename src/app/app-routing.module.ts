@@ -5,27 +5,37 @@ import { TextSimilarityComponent } from './text-similarity/text-similarity.compo
 import { EntityExtractionComponent } from './entity-extraction/entity-extraction.component';
 import { LanguageDetectionComponent } from './language-detection/language-detection.component';
 import { SentimentAnalysisComponent } from './sentiment-analysis/sentiment-analysis.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: EntityExtractionComponent
+    component: EntityExtractionComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   {
     path: 'textSimilarity',
-    component: TextSimilarityComponent
+    component: TextSimilarityComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   {
     path: 'languageDetection',
-    component: LanguageDetectionComponent
+    component: LanguageDetectionComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   {
     path: 'sentimentAnalysis',
-    component: SentimentAnalysisComponent
+    component: SentimentAnalysisComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   {
     path: 'configuration',
-    component: SentimentAnalysisComponent
+    component: UserDashboardComponent
   }
 ];
 

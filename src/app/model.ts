@@ -64,3 +64,10 @@ export interface SentimentData {
     score: number,
     type: string
 }
+
+export interface Log {
+    method: string,
+    endpoint: string,
+    date: string,
+    timestamp: string
+}

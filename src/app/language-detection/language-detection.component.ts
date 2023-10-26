@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageDetectionData } from '../model';
 import { DandelionService } from '../service/dandelion.service';
+import { ConfigService } from '../service/config.service';
 
 @Component({
   selector: 'app-language-detection',
@@ -14,7 +15,7 @@ export class LanguageDetectionComponent implements OnInit {
 
   detectedLanguage: LanguageDetectionData = { timestamp: '', time: 0, text: '', detectedLangs: [] };
 
-  constructor(private dandelionService: DandelionService) {
+  constructor(private dandelionService: DandelionService, private configService: ConfigService) {
     this.text = '';
     this.cleanData = false;
   }
@@ -32,7 +33,7 @@ export class LanguageDetectionComponent implements OnInit {
     if (this.cleanData)
       query += '&clean=true'
 
-    this.dandelionService.getDetectedLanguages(this.text).subscribe((detectedLanguage) => {
+    this.dandelionService.getDetectedLanguages(query, this.configService.getToken()).subscribe((detectedLanguage) => {
       this.detectedLanguage = detectedLanguage;
 
       for(let i=0; i < this.detectedLanguage.detectedLangs.length; i++){

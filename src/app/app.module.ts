@@ -12,6 +12,8 @@ import { LanguageDetectionComponent } from './language-detection/language-detect
 import { SentimentAnalysisComponent } from './sentiment-analysis/sentiment-analysis.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
+import { LoggerService } from './service/logger.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
