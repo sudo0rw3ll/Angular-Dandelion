@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DandelionService } from '../service/dandelion.service';
 import { ExtractedEntity } from '../model';
 import { ConfigService } from '../service/config.service';
+import { LoggerService } from '../service/logger.service';
 
 @Component({
   selector: 'app-entity-extraction',
@@ -18,7 +19,9 @@ export class EntityExtractionComponent implements OnInit {
   includesPart: Array<string>;
   sliderValue: number;
 
-  constructor(private dandelionService: DandelionService, private configService: ConfigService) {
+  constructor(private dandelionService: DandelionService,
+    private configService: ConfigService,
+    private loggerService: LoggerService) {
     this.textQuery = '';
     this.isImage = false;
     this.isAbstract = false;
@@ -46,6 +49,8 @@ export class EntityExtractionComponent implements OnInit {
       this.extractedEntity = extractedEntity;
 
       console.log(this.extractedEntity);
+
+      this.loggerService.info({ timestamp: Date.now(), endpoint: `${this.dandelionService.getDandelionApiEndpoint()}/nex/v1/?text=${query}`, method: 'GET' });
     });
   }
 

@@ -68,6 +68,5 @@ export interface SentimentData {
 export interface Log {
     method: string,
     endpoint: string,
-    date: string,
-    timestamp: string
+    timestamp: number
 }

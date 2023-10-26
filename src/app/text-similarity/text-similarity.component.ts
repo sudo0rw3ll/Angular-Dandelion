@@ -38,7 +38,7 @@ export class TextSimilarityComponent implements OnInit {
       console.log(this.similarityData.similarity * 100);
     });
 
-    this.loggerService.log({ timestamp: '', date: '', endpoint: '', method: 'GET' });
+    this.loggerService.info({ timestamp: Date.now(), endpoint: `${this.dandelionService.getDandelionApiEndpoint()}/sim/v1/?text1=${this.query1}&text2=${this.query2}&token=${localStorage.getItem('userToken')}/`, method: 'GET' });
   }
 
   changeQuery1(event: Event): void {

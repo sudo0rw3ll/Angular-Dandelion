@@ -13,6 +13,8 @@ import { SentimentAnalysisComponent } from './sentiment-analysis/sentiment-analy
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 import { LoggerService } from './service/logger.service';
+import { DatePipe } from './pipes/date.pipe';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { LoggerService } from './service/logger.service';
     EntityExtractionComponent,
     LanguageDetectionComponent,
     SentimentAnalysisComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    DatePipe,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

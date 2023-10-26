@@ -7,6 +7,7 @@ import { LanguageDetectionComponent } from './language-detection/language-detect
 import { SentimentAnalysisComponent } from './sentiment-analysis/sentiment-analysis.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AuthGuard } from './auth.guard';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,12 @@ const routes: Routes = [
   {
     path: 'sentimentAnalysis',
     component: SentimentAnalysisComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
     canActivate: [AuthGuard],
     canDeactivate: [AuthGuard]
   },

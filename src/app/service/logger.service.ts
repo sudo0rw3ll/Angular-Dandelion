@@ -14,7 +14,7 @@ export class LoggerService {
     return this.apiCallsLog;
   }
 
-  log(log: Log) {
+  info(log: Log) {
     this.apiCallsLog.push(log);
   }
 }

@@ -30,4 +30,8 @@ export class DandelionService {
   getSentimentAnalysis(query: string): Observable<SentimentAnalysisData> {
     return this.httpClient.get<SentimentAnalysisData>(`${this.apiUrl}/sent/v1/${query}`);
   }
+
+  getDandelionApiEndpoint(): string {
+    return this.apiUrl;
+  }
 }

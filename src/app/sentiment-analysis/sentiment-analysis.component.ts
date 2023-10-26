@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SentimentAnalysisData } from '../model';
 import { DandelionService } from '../service/dandelion.service';
 import { ConfigService } from '../service/config.service';
+import { LoggerService } from '../service/logger.service';
 
 @Component({
   selector: 'app-sentiment-analysis',
@@ -17,7 +18,9 @@ export class SentimentAnalysisComponent implements OnInit {
   sentimentColor: string;
   sentimentAnalysis: SentimentAnalysisData = { timestamp: '', time: 0, lang: '', sentiment: { score: 0, type: '' } };
 
-  constructor(private dandelionService: DandelionService, private configService: ConfigService) {
+  constructor(private dandelionService: DandelionService, 
+    private configService: ConfigService,
+    private loggerService: LoggerService) {
     this.query = '';
     this.language = '';
     this.startColor = '#FF0000';
@@ -48,6 +51,8 @@ export class SentimentAnalysisComponent implements OnInit {
 
       console.log(sentimentAnalysis);
       this.sentimentColor = this.interpolateColors(this.sentimentAnalysis.sentiment.score);
+      
+      this.loggerService.info({ timestamp: Date.now(), endpoint: `${this.dandelionService.getDandelionApiEndpoint()}/sent/v1/${apiQuery}`, method: 'GET' });
     });
   }
 
